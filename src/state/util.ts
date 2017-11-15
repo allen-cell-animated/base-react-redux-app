@@ -1,3 +1,4 @@
+import {AnyAction} from "redux";
 import {
     TypeToDescriptionMap,
 } from "./types";
@@ -8,8 +9,8 @@ export function makeConstant(associatedReducer: string, actionType: string) {
     return `${NAMESPACE}/${associatedReducer.toUpperCase()}/${actionType.toUpperCase()}`;
 }
 
-export function makeReducer<S, A>(typeToDescriptionMap: TypeToDescriptionMap<S, A>, initialState: S) {
-    return (state: S = initialState, action: A & { type: string }) => {
+export function makeReducer<S>(typeToDescriptionMap: TypeToDescriptionMap, initialState: S) {
+    return (state: S = initialState, action: AnyAction) => {
         const description = typeToDescriptionMap[action.type];
         if (!description) {
             return state;

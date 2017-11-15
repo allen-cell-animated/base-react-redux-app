@@ -3,7 +3,6 @@ import { makeReducer } from "../util";
 
 import { RECEIVE_CONTENT } from "./constants";
 import {
-    Action,
     ContentStateBranch,
     ReceiveAction,
 } from "./types";
@@ -12,14 +11,14 @@ export const initialState = {
     content: [],
 };
 
-const typeToDescriptionMap: TypeToDescriptionMap<ContentStateBranch, Action> = {
+const typeToDescriptionMap: TypeToDescriptionMap = {
   [RECEIVE_CONTENT]: {
-      accepts: (action: any): action is ReceiveAction => action.type === RECEIVE_CONTENT,
-      perform: (state, action: ReceiveAction) => ({
+      accepts: (action): action is ReceiveAction => action.type === RECEIVE_CONTENT,
+      perform: (state: ContentStateBranch, action: ReceiveAction) => ({
           ...state,
           content: [...state.content, ...action.payload],
       }),
   },
 };
 
-export default makeReducer<ContentStateBranch, Action>(typeToDescriptionMap, initialState);
+export default makeReducer<ContentStateBranch>(typeToDescriptionMap, initialState);

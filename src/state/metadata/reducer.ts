@@ -3,7 +3,6 @@ import { makeReducer } from "../util";
 
 import { RECEIVE_METADATA } from "./constants";
 import {
-    Action,
     MetadataStateBranch,
     ReceiveAction,
 } from "./types";
@@ -19,11 +18,11 @@ export const initialState = {
     molecular_structure: [],
 };
 
-const actionToConfigMap: TypeToDescriptionMap<MetadataStateBranch, Action> = {
+const actionToConfigMap: TypeToDescriptionMap = {
     [RECEIVE_METADATA]: {
         accepts: (action): action is ReceiveAction => action.type === RECEIVE_METADATA,
-        perform: (state, action: ReceiveAction) => ({ ...state, ...action.payload }),
+        perform: (state: MetadataStateBranch, action: ReceiveAction) => ({ ...state, ...action.payload }),
     },
 };
 
-export default makeReducer<MetadataStateBranch, Action>(actionToConfigMap, initialState);
+export default makeReducer<MetadataStateBranch>(actionToConfigMap, initialState);

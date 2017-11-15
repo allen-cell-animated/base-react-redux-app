@@ -5,11 +5,11 @@ export interface ReduxLogicDeps {
     httpClient: AxiosInstance;
 }
 
-export interface ActionDescription<S, A> {
-    accepts: (action: A) => boolean;
-    perform: (state: S, action: A) => S;
+export interface ActionDescription {
+    accepts: (action: any) => boolean;
+    perform: (state: any, action: any) => any;
 }
 
-export interface TypeToDescriptionMap<S, A> {
-    [propName: string ]: ActionDescription<S, A>;
+export interface TypeToDescriptionMap {
+    [propName: string ]: ActionDescription;
 }
