@@ -11,16 +11,18 @@ import {
     SelectionStateBranch,
 } from "./types";
 
-const typeToDescriptionMap: TypeToDescriptionMap<SelectionStateBranch, Action> = {
+type NavigationTabType = string;
+
+const typeToDescriptionMap: TypeToDescriptionMap = {
     [SELECT_NAV_TAB]: {
-        accepts: (action: any): action is NavigationTab =>
+        accepts: (action: any): action is NavigationTabType =>
             values(NavigationTab).some((tab) => tab === action.payload),
-        perform: (state, action: Action) => ({ ...state, navTab: action.payload }),
+        perform: (state: SelectionStateBranch, action: Action) => ({ ...state, navTab: action.payload }),
     },
 };
 
 export const initialState = {
-    navTab: NavigationTab.CellFunctions,
+    navTab: NavigationTab.FirstTab,
 };
 
-export default makeReducer<SelectionStateBranch, Action>(typeToDescriptionMap, initialState);
+export default makeReducer<SelectionStateBranch>(typeToDescriptionMap, initialState);

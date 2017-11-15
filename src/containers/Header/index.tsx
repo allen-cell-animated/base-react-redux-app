@@ -7,7 +7,7 @@ interface HeaderProps {
     className?: string;
 }
 
-export class Header extends React.Component<HeaderProps, {}> {
+export default class Header extends React.Component<HeaderProps, {}> {
     public render() {
         const {
             className,

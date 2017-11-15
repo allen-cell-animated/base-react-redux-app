@@ -2,7 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 
 import NavTab from "../../components/NavTab";
-import { NavigationTab } from "../../constants";
+
 import {
     metadata,
     selections,
@@ -13,7 +13,7 @@ interface SidebarProps {
     className?: string;
     requestMetadata: () => any;
     selectNavTab: (payload: any) => any;
-    selectedNavTab: NavigationTab;
+    selectedNavTab: string;
 }
 
 class Sidebar extends React.Component<SidebarProps, {}> {
@@ -27,7 +27,7 @@ class Sidebar extends React.Component<SidebarProps, {}> {
         this.props.requestMetadata();
     }
 
-    public onNavTabChange(selection: NavigationTab) {
+    public onNavTabChange(selection: string) {
         this.props.selectNavTab(selection);
     }
 
