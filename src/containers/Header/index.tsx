@@ -7,7 +7,7 @@ interface HeaderProps {
     className?: string;
 }
 
-export default class Header extends React.Component<HeaderProps, {}> {
+export class Header extends React.Component<HeaderProps, {}> {
     public render() {
         const {
             className,
@@ -16,7 +16,7 @@ export default class Header extends React.Component<HeaderProps, {}> {
         return (
             <header className={classNames(className, styles.container)}>
                 <h2 className={styles.title}>
-                    A VISUAL GUIDE to Human Induced-Pluripotent Stem Cells (hiPSCs)
+                    A Header
                 </h2>
             </header>
         );
