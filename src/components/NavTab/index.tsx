@@ -8,8 +8,8 @@ import { NavigationTab } from "../../constants";
 require("style-loader!css-loader!antd/es/tabs/style/index.css");
 
 interface NavTabProps {
-    onChange?: (selection: NavigationTab) => any;
-    selectedNavTab?: NavigationTab;
+    onChange?: (selection: string) => any;
+    selectedNavTab?: string;
 }
 
 const NavTab: React.SFC<NavTabProps> = (props) => {
@@ -37,7 +37,7 @@ const NavTab: React.SFC<NavTabProps> = (props) => {
 
 NavTab.defaultProps = {
     onChange: noop,
-    selectedNavTab: NavigationTab.CellFunctions,
+    selectedNavTab: NavigationTab.FirstTab,
 };
 
 export default NavTab;

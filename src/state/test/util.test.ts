@@ -36,10 +36,10 @@ describe("state utilities", () => {
             flag: false,
         };
 
-        const typeToDescriptionMap: TypeToDescriptionMap<State, Action> = {
+        const typeToDescriptionMap: TypeToDescriptionMap = {
             [ACTION_CONSTANT]: {
                 accepts: (action: any): action is Action => action.hasOwnProperty("arbitraryProp"),
-                perform: (state, action) => ({ ...state, flag: action.arbitraryProp }),
+                perform: (state: any, action: any) => ({ ...state, flag: action.arbitraryProp }),
             },
         };
 
@@ -48,7 +48,7 @@ describe("state utilities", () => {
         let reducer: any;
 
         beforeEach(() => {
-            reducer = makeReducer<State, Action>(typeToDescriptionMap, initialState);
+            reducer = makeReducer<State>(typeToDescriptionMap, initialState);
         });
 
         it("returns a reducer function", ()  => {
