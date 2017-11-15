@@ -3,7 +3,8 @@ Visual Cell
 
 #### Install:
 ```
-$ git clone http://stash.corp.alleninstitute.org/scm/aics/visual-cell.git
+$ git clone git@github.com:allen-cell-animated/base-react-redux-app.git
+
 $ ./gradlew npmInstall
 ```
 
