@@ -8,14 +8,9 @@ import {
 } from "./types";
 
 export const initialState = {
-    cell_function: [],
-    cell_model: [],
-    content_category_type: [],
-    content_source: [],
-    content_type: [],
-    meso_structure: [],
-    mitotic_state: [],
-    molecular_structure: [],
+    posts_data: [],
+    todos_data: [],
+    users_data: [],
 };
 
 const actionToConfigMap: TypeToDescriptionMap = {

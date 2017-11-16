@@ -1,6 +1,9 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
+import { ListOfMetadata } from "../../state/metadata/types";
+import Menu from "../../components/Menu";
+import { NavigationTab} from "../../constants";
 import NavTab from "../../components/NavTab";
 
 import {
@@ -14,6 +17,7 @@ interface SidebarProps {
     requestMetadata: () => any;
     selectNavTab: (payload: any) => any;
     selectedNavTab: string;
+    userData: ListOfMetadata;
 }
 
 class Sidebar extends React.Component<SidebarProps, {}> {
@@ -31,6 +35,17 @@ class Sidebar extends React.Component<SidebarProps, {}> {
         this.props.selectNavTab(selection);
     }
 
+    public renderMenu() {
+        if (this.props.selectedNavTab !== NavigationTab.FirstTab || this.props.userData.length === 0) {
+            return null;
+        }
+        return (
+            <Menu
+                userData={this.props.userData}
+            />
+        );
+    }
+
     public render() {
         const {
             className,
@@ -43,6 +58,7 @@ class Sidebar extends React.Component<SidebarProps, {}> {
                     onChange={this.onNavTabChange}
                     selectedNavTab={selectedNavTab}
                 />
+                {this.renderMenu()}
             </section>
         );
     }
@@ -51,6 +67,7 @@ class Sidebar extends React.Component<SidebarProps, {}> {
 function mapStateToProps(state: State) {
     return {
         selectedNavTab: selections.selectors.getNavTab(state),
+        userData: metadata.selectors.getUserData(state),
     };
 }
 

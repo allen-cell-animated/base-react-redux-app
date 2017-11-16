@@ -1,20 +1,43 @@
-export interface LookupValue {
+export interface User {
     id: number;
     name: string;
+    address: {
+        city: string;
+        geo: {lat: string, lng: string};
+        street: string;
+        suite: string;
+        zipcode: string;
+
+    };
+    company: {
+        bs: string;
+        catchPhrase: string;
+        name: string;
+    };
+    email: string;
+    phone: string;
+    username: string;
+    website: string;
 }
 
-export interface CellModel {
+export interface Post {
+    body: string;
     id: number;
-    cellFunctionId: number;
-    mesoStructureId: number;
-    molecularStructureId: number;
+    title: string;
+    userId: number;
 }
 
-export type CellModelComponentKeys = "cell_function" | "cell_model" | "meso_structure" | "molecular_structure";
-export type ContentMetadataKeys = "content_category_type" | "content_source" | "content_type" | "mitotic_state";
+export interface ToDo {
+    complete: boolean;
+    id: number;
+    title: string;
+    userId: number;
+}
 
-export type ListOfMetadata = LookupValue[] | CellModel[];
-export type MetadataKeys = CellModelComponentKeys | ContentMetadataKeys;
+export type UserPostKeys = "users_data" | "posts_data" | "todos_data";
+
+export type ListOfMetadata = User[] | Post[] | ToDo[];
+export type MetadataKeys = UserPostKeys;
 export type MetadataStateBranch = {
     [K in MetadataKeys]: ListOfMetadata;
 };

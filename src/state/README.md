@@ -54,7 +54,7 @@ Used within `mapStateToProps` in containers.
 
 Each branch of the Redux state tree has its own directory under the `state` directory. That subdirectory serves as a module, bundling together action constants (`constants.ts`),
 action creators (`actions.ts`), a single reducer (`reducer.ts`), selectors (either in `selectors.ts` if there are few, or in their own subfolder, `selectors/` if there are many), associated types
-(`types.ts`), and any logics (if few, `logics.ts`, if many, under own subfolder, `logics/`). Each of these state directories has an `index.ts` to package the bundle. This pattern loosely follows the 
+(`types.ts`), and any logics (if few, `logics.ts`, if many, under own subfolder, `logics/`). Each of these state directories has an `selectors.ts` to package the bundle. This pattern loosely follows the 
 [Ducks: Redux Reducer Bundles](https://github.com/erikras/ducks-modular-redux) specification.
 
 E.g.:
@@ -68,14 +68,14 @@ src/
         selections/
             actions.ts
             constants.ts
-            index.ts
+            selectors.ts
             logics.ts
             reducer.ts
             selectors.ts
             types.ts
 ```
 
-Within `selections/index.ts`:
+Within `selections/selectors.ts`:
 
 ```
 import * as actions from "./actions";

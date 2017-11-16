@@ -17,21 +17,18 @@ const requestCellModelMetadata = createLogic({
         } = deps;
 
         return Promise.all([
-            httpClient.get(`${baseApiUrl}/cellFunctions`),
-            httpClient.get(`${baseApiUrl}/mesoStructures`),
-            httpClient.get(`${baseApiUrl}/molecularStructures`),
-            httpClient.get(`${baseApiUrl}/cellModels`),
+            httpClient.get(`${baseApiUrl}/users`),
+            httpClient.get(`${baseApiUrl}/posts`),
+            httpClient.get(`${baseApiUrl}/todos`),
         ])
             .then(([
-                cellFunctions,
-                mesoStructures,
-                molecularStructures,
-                cellModel,
+                users,
+                posts,
+                todos,
             ]: AxiosResponse[]) => ({
-                cell_function: cellFunctions.data,
-                cell_model: cellModel.data,
-                meso_structure: mesoStructures.data,
-                molecular_structure: molecularStructures.data,
+                posts_data: posts.data,
+                todos_data: todos.data,
+                users_data: users.data,
             }))
             .catch((reason) => {
                 // TODO create Logger
