@@ -1,15 +1,22 @@
 import * as React from "react";
 
-interface MenuProps {
-    userData: any;
+interface MenuElement {
+    id: number;
+    title: string;
 }
 
-const MenuBar: React.SFC<MenuProps> = (props) => {
-    const users = props.userData.map((user: any) =>
-        <li key={user.id}>{user.name}</li>
-    );
+interface MenuList {
+    menuList: MenuElement[];
+}
+
+const MenuBar: React.SFC<MenuList> = (props) => {
+    const items = props.menuList.map((ele: MenuElement) => (
+         <li key={ele.id}>{ele.title}</li>
+    )
+
+);
     return (
-        <ul>Hey {users}</ul>
+        <ul>Hey {items}</ul>
     );
 };
 

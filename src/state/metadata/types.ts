@@ -34,13 +34,16 @@ export interface ToDo {
     userId: number;
 }
 
-export type UserPostKeys = "users_data" | "posts_data" | "todos_data";
+export interface MenuElement {
+    id: number;
+    title: string;
+}
 
-export type ListOfMetadata = User[] | Post[] | ToDo[];
-export type MetadataKeys = UserPostKeys;
-export type MetadataStateBranch = {
-    [K in MetadataKeys]: ListOfMetadata;
-};
+export interface MetadataStateBranch {
+    users_data: User[];
+    posts_data: Post[];
+    todos_data: ToDo[];
+}
 
 export interface ReceiveAction {
     payload: Partial<MetadataStateBranch>;
