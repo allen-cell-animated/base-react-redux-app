@@ -16,7 +16,7 @@ const MenuBar: React.SFC<MenuList> = (props) => {
 
 );
     return (
-        <ul>Hey {items}</ul>
+        <ul>{items}</ul>
     );
 };
 
