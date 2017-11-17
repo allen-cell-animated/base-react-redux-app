@@ -1,7 +1,5 @@
-import {AnyAction} from "redux";
-import {
-    TypeToDescriptionMap,
-} from "./types";
+import { AnyAction } from "redux";
+import { TypeToDescriptionMap } from "./types";
 
 const NAMESPACE = "VISUAL_CELL";
 

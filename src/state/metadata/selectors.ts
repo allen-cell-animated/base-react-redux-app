@@ -8,7 +8,8 @@ import { getNavTab } from "../selections/selectors";
 import {
     MenuElement,
     Post,
-    User} from "./types";
+    User,
+} from "./types";
 
 export const getUserData = (state: State) => state.metadata.users_data;
 export const getPostData = (state: State) => state.metadata.posts_data;

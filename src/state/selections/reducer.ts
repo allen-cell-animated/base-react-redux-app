@@ -8,10 +8,9 @@ import { makeReducer } from "../util";
 import { SELECT_NAV_TAB } from "./constants";
 import {
     Action,
+    NavigationTabType,
     SelectionStateBranch,
 } from "./types";
-
-type NavigationTabType = string;
 
 const typeToDescriptionMap: TypeToDescriptionMap = {
     [SELECT_NAV_TAB]: {

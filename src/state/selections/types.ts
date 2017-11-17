@@ -3,6 +3,8 @@ export interface Action {
     payload: any;
 }
 
+export type NavigationTabType = string;
+
 export interface SelectionStateBranch {
     navTab: string;
 }

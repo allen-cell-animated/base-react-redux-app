@@ -1,9 +1,5 @@
 import * as React from "react";
-
-interface MenuElement {
-    id: number;
-    title: string;
-}
+import { MenuElement} from "../../state/metadata/types";
 
 interface MenuList {
     menuList: MenuElement[];

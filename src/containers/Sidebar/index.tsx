@@ -40,9 +40,7 @@ class Sidebar extends React.Component<SidebarProps, {}> {
             return null;
         }
         return (
-            <Menu
-                menuList={this.props.menuData}
-            />
+            <Menu menuList={this.props.menuData}/>
         );
     }
 
