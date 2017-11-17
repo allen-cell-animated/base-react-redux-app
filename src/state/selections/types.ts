@@ -6,5 +6,5 @@ export interface Action {
 export type NavigationTabType = string;
 
 export interface SelectionStateBranch {
-    navTab: string;
+    navTab: NavigationTabType;
 }
