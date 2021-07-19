@@ -30,7 +30,7 @@ describe("state utilities", () => {
     it("returns a string in the form 'APP_NAMESPACE/REDUCER/ACTION_TYPE'", () => {
       const constant = makeConstant("foo", "bar");
       const [namespace, reducer, type] = constant.split("/");
-      expect(constant).toBeInstanceOf("string");
+      expect(typeof constant).toBe("string");
       expect(namespace).toBe("VISUAL_CELL");
       expect(reducer).toBe("FOO");
       expect(type).toBe("BAR");
@@ -47,7 +47,7 @@ describe("state utilities", () => {
     });
 
     it("returns a reducer function", () => {
-      expect(reducer).toBeInstanceOf("function");
+      expect(reducer).toBeInstanceOf(Function);
     });
 
     it("returns given state if action type does not match key in typeToDescriptionMap", () => {
