@@ -1,15 +1,28 @@
-const path = require('path');
+const path = require("path");
+const fs = require("fs");
+const lessToJs = require("less-vars-to-js");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const themeVariables = lessToJs(
+    fs.readFileSync(path.join(__dirname, "../src/styles/ant-vars.less"), "utf8")
+);
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-const { Env } = require('./constants');
+const {
+    devServer,
+    Env,
+    stats
+} = require("./constants");
 const getPluginsByEnv = require('./plugins');
 
 module.exports = ({ analyze, env } = {}) => ({
     devtool: env !== Env.PRODUCTION && 'source-map',
     devServer: {
-        port: 9002,
-        contentBase: path.join(__dirname, '../', 'dist')
+        contentBase: path.join(__dirname, "../", "dist"),
+        disableHostCheck: true,
+        host: devServer.host,
+        port: devServer.port,
+        publicPath: "/",
+        historyApiFallback: true,
+        stats,
     },
     entry: {
         app: './src/index.tsx'
@@ -17,50 +30,105 @@ module.exports = ({ analyze, env } = {}) => ({
     module: {
         rules: [
             {
-                test: /\.tsx?/,
-                include: [
-                    path.resolve(__dirname, '../', 'src')
-                ],
+                test: /\.(j|t)sx?/,
+                include: [path.resolve(__dirname, "../", "src")],
                 exclude: /node_modules/,
-                use: {
-                    loader: 'awesome-typescript-loader',
-                    options: {
-                        configFileName: path.resolve(__dirname, '../', 'tsconfig.json')
-                    }
-                }
+                use: [{
+                    loader: "babel-loader"
+                }],
             },
+            // this rule processes any CSS written for this project and contained in src/
+            // it applies PostCSS plugins and converts it to CSS Modules
             {
                 test: /\.css/,
                 include: [
-                    path.resolve(__dirname, '../', 'src')
+                    path.resolve(__dirname, "../", "src/components"),
+                    path.resolve(__dirname, "../", "src/containers"),
+                    path.resolve(__dirname, "../", "src/styles"),
+
                 ],
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                camelCase: true,
-                                importLoaders: 1,
-                                localIdentName: '[name]__[local]--[hash:base64:5]',
-                                modules: true
-                            }
+                use: [{
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    {
+                        loader: "css-loader",
+                        options: {
+                            camelCase: true,
+                            importLoaders: 1,
+                            localIdentName: "[name]__[local]--[hash:base64:5]",
+                            modules: true,
                         },
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                ident: 'postcss',
-                                plugins: [
-                                    require('postcss-import'),
-                                    require('postcss-cssnext')(),
-                                    require('postcss-responsive-font')
-                                ]
-                            }
-                        }
-                    ]
-                })
-            }
+                    },
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            sourceMap: env !== Env.PRODUCTION,
+                        },
+                    },
+                ],
+            },
+            // this rule will handle any css imports out of node_modules; it does not apply PostCSS,
+            // nor does it convert the imported css to CSS Modules
+            // e.g., importing antd component css
+            // {
+            //     test: /\.css/,
+            //     include: [
+            //         path.resolve(__dirname, "../src", "style.css"),
+            //         path.resolve(__dirname, "../", "node_modules"),
+            //     ],
+            //     use: [{
+            //             loader: MiniCssExtractPlugin.loader
+            //         },
+            //         {
+            //             loader: "css-loader"
+            //         },
+            //     ],
+            // }, 
+            {
+                test: /\.less$/,
+                use: [{
+                        loader: MiniCssExtractPlugin.loader
+                    },
+                    {
+                        loader: "css-loader",
+                        options: {
+                            camelCase: true,
+                            importLoaders: 1,
+                        },
+                    },
+                    {
+                        loader: "less-loader",
+                        options: {
+                            javascriptEnabled: true,
+                            modifyVars: themeVariables,
+                        },
+                    },
+                ],
+            }, {
+                test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
+                include: [path.resolve(__dirname, "../src/assets/fonts")],
+                loader: "url-loader",
+                options: {
+                    name: "[name].[ext]",
+                    esModule: false,
+                },
+            }, {
+                test: /\.(png|jpg|gif|svg)$/i,
+                use: ["file-loader"],
+            },
         ]
+    },
+    optimization: {
+        runtimeChunk: "single",
+        splitChunks: {
+            chunks: "all",
+            cacheGroups: {
+                vendor: {
+                    filename: "vendor.[contenthash].js",
+                    test: /[\\/]node_modules[\\/]/,
+                },
+            },
+        },
     },
     output: {
         path: path.resolve(__dirname, '../', 'dist'),
