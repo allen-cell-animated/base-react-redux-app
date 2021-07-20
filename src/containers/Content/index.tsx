@@ -4,7 +4,7 @@ interface ContentProps {
     className?: string;
 }
 
-export default class Content extends React.Component<ContentProps, {}> {
+export default class Content extends React.Component<ContentProps, never> {
     public render() {
         const {
             className,

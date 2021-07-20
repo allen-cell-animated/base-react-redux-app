@@ -20,7 +20,7 @@ interface SidebarProps {
     menuData: MenuElement[];
 }
 
-class Sidebar extends React.Component<SidebarProps, {}> {
+class Sidebar extends React.Component<SidebarProps, never> {
     public constructor(props: SidebarProps) {
         super(props);
 

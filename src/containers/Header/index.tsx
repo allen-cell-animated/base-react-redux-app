@@ -1,4 +1,4 @@
-import * as classNames from "classnames";
+import classNames from "classnames";
 import * as React from "react";
 
 const styles = require("./style.css");
@@ -7,7 +7,7 @@ interface HeaderProps {
     className?: string;
 }
 
-export default class Header extends React.Component<HeaderProps, {}> {
+export default class Header extends React.Component<HeaderProps, never> {
     public render() {
         const {
             className,
