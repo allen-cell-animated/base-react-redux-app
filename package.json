@@ -11,14 +11,13 @@
   "license": "ISC",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack/webpack.config.js --env.env dev",
-    "gh-build": "GH_BUILD=true webpack --config ./webpack/webpack.config.js --env.env production",
-    "pregh-deploy": "npm run gh-build",
+    "pregh-deploy": "npm run build",
     "gh-deploy": "gh-pages -d dist",
     "build:staging": "NODE_ENV=staging webpack --config ./webpack/webpack.config.js  --env.env staging",
     "build": "NODE_ENV=production webpack --config ./webpack/webpack.config.js  --env.env production",
     "lint": "eslint src/**/*.{ts,tsx}",
     "typeCheck": "tsc -p tsconfig.json --noEmit",
-    "update-viewer": "npm i @aics/simularium-viewer@latest",
+    "all-checks": "npm run test && npm run typeCheck && npm run lint",
     "test": "jest --coverage"
   },
   "devDependencies": {
