@@ -29,6 +29,22 @@ Typical steps to contribute:
 
 4. Submit a pull request to merge your fork's branch into this repository, via GitHub.
 
+#### Configuration:
+
+| Env var | Default | Options |
+| ------- |-------- |---------|
+|`PORT`   | 9002    |         |
+|`DEPLOYMENT_ENV`    | dev     | "dev", "staging", "production" |
+
+
+Differences in builds by environment:
+
+| Target | Sources Maps |  NODE_ENV === 'production' |
+| ------ | ------------ |  ------------------------- |
+| dev    | true         |  false                     |
+| staging| true         |  true                      |
+|production| false      |  true                      |
+
 ## Questions or Thoughts?
 
 Talk to us on [one of our community forums][community].
