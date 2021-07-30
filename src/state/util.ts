@@ -3,7 +3,7 @@ import { TypeToDescriptionMap } from "./types";
 
 const NAMESPACE = "VISUAL_CELL";
 
-export function makeConstant(associatedReducer: string, actionType: string) {
+export function makeConstant(associatedReducer: string, actionType: string): string {
     return `${NAMESPACE}/${associatedReducer.toUpperCase()}/${actionType.toUpperCase()}`;
 }
 

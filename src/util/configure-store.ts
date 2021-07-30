@@ -31,7 +31,7 @@ const reduxLogicDependencies = {
 const logicMiddleware = createLogicMiddleware(logics, reduxLogicDependencies);
 const middleware = applyMiddleware(logicMiddleware);
 
-export default function createReduxStore(initialState?: {}) {
+export default function createReduxStore(initialState?: Record<string, unknown>) {
     const rootReducer = combineReducers(reducers);
     if (initialState) {
         return createStore(rootReducer, initialState, middleware);

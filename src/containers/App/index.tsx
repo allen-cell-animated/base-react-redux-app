@@ -6,7 +6,7 @@ import Sidebar from "../Sidebar";
 
 const styles = require("./style.css");
 
-export default class App extends React.Component<{}, {}> {
+export default class App extends React.Component<unknown, never> {
     public render() {
         return (
             <div className={styles.container}>

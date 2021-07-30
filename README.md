@@ -1,31 +1,28 @@
-Allen Cell react-redux app setup
-=================
+# Project name
 
-#### Install:
-```
-$ git clone git@github.com:allen-cell-animated/base-react-redux-app.git
+One line description
 
-$ ./gradlew npmInstall
-```
+---
 
-#### Configuration:
+## Description
 
-| Env var | Default | Options |
-| ------- |-------- |---------|
-|`PORT`   | 9002    |         |
-|`DEPLOYMENT_ENV`    | dev     | "dev", "staging", "production" |
+Main features in a brief descriptive text.
 
+## Installation
 
-Differences in builds by environment:
+Describe how to obtain the software and get it ready to run
 
-| Target | Sources Maps |  NODE_ENV === 'production' |
-| ------ | ------------ |  ------------------------- |
-| dev    | true         |  false                     |
-| staging| true         |  true                      |
-|production| false      |  true                      |
+## Documentation
 
+If you have more extensive technical documentation (whether generated or not), ensure they are published to the following address:
+For full package documentation please visit
+[organization.github.io/projectname](https://organization.github.io/projectname/index.html).
 
-#### Developing:
-To run this application in development, run `$ ./gradlew start`. This will start `webpack-dev-server`, running by default
-on port 9002. To view, visit `http://localhost:9002`. Webpack-dev-server will watch all relevant files, and reload the browser
-automatically.
+## Quick Start
+
+To run locally:
+`npm start`.
+To view, visit `http://localhost:9002`.
+## Development
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for information related to developing the code.
